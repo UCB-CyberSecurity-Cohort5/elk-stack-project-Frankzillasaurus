@@ -158,4 +158,8 @@ Run command will only be used once to start the container, and will not need to 
 
 `ansible-playbook /etc/ansible/metricbeat-playbook.yml`
 
+<<<<<<< HEAD
 These playbooks will set up different tasks as mentioned in the beginning of the README.
+=======
+These playbooks will set up different tasks as mentioned in the beginning of the README.
+>>>>>>> 45685362540fdeec7c0dae405f0b37cd0866b74f
