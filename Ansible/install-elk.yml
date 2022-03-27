@@ -1,0 +1,51 @@
+---
+- name: Config Elk VM with Docker
+  hosts: elk
+  remote_user: RedAdmin
+  become: true
+  tasks:
+      # Use apt module/ program
+    - name: Install docker.io
+      apt:
+        update_cache: yes
+        name: docker.io
+        state: present
+
+      # Use apt module/ program
+    - name: Install Python3-pip3
+      apt:
+        force_apt_get: yes
+        name: python3-pip
+        state: present
+
+      # Use pip module (Default to pip3)
+    - name: Install Docker Python Module
+      pip:
+        name: docker
+        state: present
+
+      # Use sysctl module
+    - name: Increase Virtual Memory to 262144
+      sysctl:
+        name: vm.max_map_count
+        value: "262144"
+        state: present
+        reload: yes
+
+      # Use docker_container module
+    - name: Download and Launch a Docker Elk Container
+      docker_container:
+        name: elk
+        image: sebp/elk:761
+        state: started
+        restart_policy: always
+        published_ports:
+          - 5601:5601
+          - 9200:9200
+          - 5044:5044
+
+      # Use systemd module
+    - name: Enable Service Docker on Boot
+      systemd:
+        name: docker
+        enabled: yes
