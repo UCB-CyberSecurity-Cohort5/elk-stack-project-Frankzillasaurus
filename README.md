@@ -160,6 +160,4 @@ Run command will only be used once to start the container, and will not need to 
 
 These playbooks will set up different tasks as mentioned in the beginning of the README.
 
-<<<<<<<
-=======
->>>>>>> 45685362540fdeec7c0dae405f0b37cd0866b74f
+
