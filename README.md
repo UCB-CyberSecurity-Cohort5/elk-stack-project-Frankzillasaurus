@@ -71,12 +71,72 @@ Ansible was used to automate the configuration of the ELK machine. No configurat
 - _Putting Infrastructure as Code (IaC) to practice for more efficient operations_
 
 The playbook implements the following tasks:
+```
+---
+- name: Config Elk VM with Docker
+  hosts: elk
+  remote_user: RedAdmin
+  become: true
+  tasks:
+```
+
 - _Install docker.io using apt_
+```
+    - name: Install docker.io
+      apt:
+        update_cache: yes
+        name: docker.io
+        state: present
+```
+
 - _Install Python3-pip using apt_
+```
+    - name: Install Python3-pip3
+      apt:
+        force_apt_get: yes
+        name: python3-pip
+        state: present
+```
+
 - _Install Docker Python Module with pip_
+```
+    - name: Install Docker Python Module
+      pip:
+        name: docker
+        state: present
+```
+
 - _Increase the Virtual Memory of the system to "262144" with systemctl_
+```
+    - name: Increase Virtual Memory to 262144
+      sysctl:
+        name: vm.max_map_count
+        value: "262144"
+        state: present
+        reload: yes
+```
+
 - _Download and Launch a Docker ELK Container with the image "sebp/elk:761"_
+```
+    - name: Download and Launch a Docker Elk Container
+      docker_container:
+        name: elk
+        image: sebp/elk:761
+        state: started
+        restart_policy: always
+        published_ports:
+          - 5601:5601
+          - 9200:9200
+          - 5044:5044
+```
+
 - _Enable Docker Service on Boot in systemd_
+```
+    - name: Enable Service Docker on Boot
+      systemd:
+        name: docker
+        enabled: yes
+```
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance:
 
@@ -104,7 +164,10 @@ In order to use the playbook, you will need to have an Ansible control node alre
 SSH into the control node and follow the steps below:
 >- Copy the configuration file to Jump-Box-Provisioner's `/etc/ansible/files`.
 >- Update the `hosts` file to include the IP addresses of the target machine(s) in the correct host's group (create if not already existing)
->- Run the playbook, and navigate to the proper "_ELK Server Kibana_" GUI data installation page(s) in your web browser to check that the installation worked as expected.
+> ![](Images/Hosts%20File%20Additional%20IP%20Edit.jpg)
+>- Run the playbook, and navigate to the proper "_ELK Server Kibana_" GUI data installation page(s) in your web browser to check that the installation worked as expected:
+> ![](Images/Running%20Ansible-Playbook%20Install-Elk%20yml%20File.jpg)
+> ![](Images/Welcome%20to%20Kibana%20Page.jpg)
   
 
 ## References  
