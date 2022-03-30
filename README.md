@@ -6,12 +6,12 @@ The files in this repository were used to configure the network depicted below.
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the "ELK Azure Network" file(s) may be used to install only certain pieces of it, such as Filebeat.
 
-  - _pentest.yml_ - Configure Web Docker VM(s) with Ansible and Launch Web DVWA Docker Container
-  - _install-elk.yml_ - Configure E.L.K. Stack Server Docker VM with Ansible and increase Virtual Memory to "262144"
-  - _filebeat-config.yml_ - Full Filebeat Configuration file documenting all non-deprecated options in comments with IP Addresses updated for current use
-  - _filebeat-playbook.yml_ - Playbook to install and launch filebeat service
-  - _metricbeat-config.yml_ - Metricbeat Configuration file highlighting only the most common options
-  - _metricbeat-playbook.yml_ - Playbook to install metricbeat (Docker Metrics)
+  - _[pentest.yml](Ansible/pentest.yml)_ - Configure Web Docker VM(s) with Ansible and Launch Web DVWA Docker Container
+  - _[install-elk.yml](Ansible/install-elk.yml)_ - Configure E.L.K. Stack Server Docker VM with Ansible and increase Virtual Memory to "262144"
+  - _[filebeat-config.yml](Ansible/filebeat-config.yml)_ - Full Filebeat Configuration file documenting all non-deprecated options in comments with IP Addresses updated for current use
+  - _[filebeat-playbook.yml](Ansible/filebeat-playbook.yml)_ - Playbook to install and launch filebeat service
+  - _[metricbeat-config.yml](Ansible/metricbeat-config.yml)_ - Metricbeat Configuration file highlighting only the most common options
+  - _[metricbeat-playbook.yml](Ansible/metricbeat-playbook.yml)_ - Playbook to install metricbeat (Docker Metrics)
 
 This document contains the following details:
 - Description of the Topology
@@ -47,7 +47,7 @@ The configuration details of each machine may be found below:
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the Jump-Box-Provisioner machine can accept connections from the Internet. Access to this machine is only allowed from the following IP address with an authenticated SSH key:
+Only the Jump-Box-Provisioner machine can accept connections from the Internet via the "LoadBalancerFrontEndIP" address. Access to this machine is only allowed from the following IP address with an authenticated SSH key:
 > __71.202.177.142__
 
 Machines within the network can only be accessed by the Jump-Box-Provisioner with its private IP address and authenticated SSH key:
@@ -105,6 +105,15 @@ SSH into the control node and follow the steps below:
 >- Copy the configuration file to Jump-Box-Provisioner's `/etc/ansible/files`.
 >- Update the `hosts` file to include the IP addresses of the target machine(s) in the correct host's group (create if not already existing)
 >- Run the playbook, and navigate to the proper "_ELK Server Kibana_" GUI data installation page(s) in your web browser to check that the installation worked as expected.
+  
+
+## References  
+
+A Guide to using Kibana and the GUI interface with sample data can be found in the following documentation:  
+**[Guide to Exploring Kibana](Kibana/Exploring_Kibana.md)**
+
+A write-up about using Containers for Cloud Security can be found in the following documention:  
+**[Cloud Security: Containers](/Interview/Frank%20Lin%20-%20Project%201%20-%20Interview%20Questions.pdf)**
 
 ---
 ### Notes
