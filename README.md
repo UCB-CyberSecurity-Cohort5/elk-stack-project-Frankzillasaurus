@@ -48,7 +48,7 @@ The configuration details of each machine may be found below:
 The machines on the internal network are not exposed to the public Internet. 
 
 Only the Jump-Box-Provisioner machine can accept connections from the Internet via the "LoadBalancerFrontEndIP" address. Access to this machine is only allowed from the following IP address with an authenticated SSH key:
-> __71.202.177.142__
+> __71.202.177.143__
 
 Machines within the network can only be accessed by the Jump-Box-Provisioner with its private IP address and authenticated SSH key:
 > __10.0.0.4__
